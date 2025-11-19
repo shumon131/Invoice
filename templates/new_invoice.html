@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Create Invoice</h2>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Client name</label>
+    <input class="form-control" name="client_name" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Date</label>
+    <input class="form-control" name="date" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Notes (optional)</label>
+    <textarea class="form-control" name="notes"></textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Items (one per line): description,quantity,unit_price</label>
+    <textarea class="form-control" name="items_text" rows="6">{{ sample_items }}</textarea>
+    <div class="form-text">Example: Design work,10,30</div>
+  </div>
+  <button class="btn btn-success" type="submit">Save Invoice</button>
+</form>
+{% endblock %}
