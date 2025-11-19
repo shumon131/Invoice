@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Invoices</h2>
+{% if invoices %}
+<table class="table table-striped">
+  <thead>
+    <tr><th>#</th><th>Client</th><th>Date</th><th>Total</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for inv in invoices %}
+    <tr>
+      <td>{{ inv.id }}</td>
+      <td>{{ inv.client_name }}</td>
+      <td>{{ inv.date or '-' }}</td>
+      <td>${{ '%.2f' % inv.subtotal() }}</td>
+      <td><a class="btn btn-sm btn-primary" href="{{ url_for('view_invoice', invoice_id=inv.id) }}">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No invoices yet. <a href="{{ url_for('new_invoice') }}">Create one</a>.</p>
+{% endif %}
+{% endblock %}
